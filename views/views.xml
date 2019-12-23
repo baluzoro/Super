@@ -1,0 +1,61 @@
+<odoo>
+
+	<record model="ir.ui.view" id="view_statusbar_form">
+	    <field name="name">Statusbar</field>
+	    <field name="model">state_validate</field>
+	    <field name="type">form</field>
+	    <field name="arch" type="xml">
+		<form string="Workflow record">
+		<!--The header tag is built to add buttons within. This puts them at the top -->
+		<header>
+		    <button string="Set to concept" type="object" name="concept_progressbar1" attrs="{'invisible': [('state', '=', 'concept')]}"/>
+		    <!--The oe_highlight class gives the button a red color when it is saved.
+		    It is usually used to indicate the expected behaviour. -->
+		    <button string="Set to started" type="object" name="started_progressbar" class="oe_highlight" attrs="{'invisible': [('state','=','started')]}"/>
+		    <button string="In progress" type="object" name="progress_progressbar" attrs="{'invisible': [('state','=','progress')]}"/>
+		    <button string="Done" type="object" name="done_progressbar" attrs="{'invisible': [('state','=','finished')]}"/>
+		    <!--This will create the statusbar, thanks to the widget. -->
+		    <field name="state" widget="statusbar"/>
+		</header>
+		<group>
+		    <field name="name"/>
+		</group>
+		</form>
+	    </field>
+	</record>
+
+
+	<record model="ir.ui.view" id="view_statusbar_form">
+	    <field name="name">Selection</field>
+	    <field name="model">custom_employee.relatives</field>
+	    <field name="type">form</field>
+	    <field name="arch" type="xml">
+		<form string="selection test">
+		<group>
+			<field name="name"/>
+			<field name="gender"/>
+			<field name="relative_relationship"/>  
+		</group>
+		</form>
+	    </field>
+	</record>		
+
+        <record id="action_statusbar_demo" model="ir.actions.act_window">
+            <field name="name">Statusbar</field>
+            <field name="res_model">state_validate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="selection_field_test" model="ir.actions.act_window">
+            <field name="name">Selection</field>
+            <field name="res_model">custom_employee.relatives</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+	</record>
+
+    <menuitem id="menu_state_validate_view" name="state_button" /> 
+    <menuitem id="statusbar_state" name="state"  action="action_statusbar_demo" parent="menu_state_validate_view"/> 
+    <menuitem id="selection_test" name="Selection"  action="selection_field_test" parent="menu_state_validate_view"/> 
+ 
+</odoo>

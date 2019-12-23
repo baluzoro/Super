@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_state_validate_state_validate,state_validate.state_validate,model_state_validate_state_validate,,1,0,0,0
